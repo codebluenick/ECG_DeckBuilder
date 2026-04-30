@@ -23,4 +23,18 @@ public class CardView : MonoBehaviour
     public GameObject back;
 
     private CardData data; //Internal ref to the data being displayed
+
+///<summary>
+/// Func to inject a CardData ScriptableObject into the UI elements.
+/// </summary>
+public void Setup(CardData cardData)
+    {
+        data = cardData;
+
+        //Apply data from the ScriptableObject to the UI
+        artwork.sprite = data.artwork;
+        nameText.text = data.cardName;
+        statsText.text = data.stats;
+        descText.text = data.description;
+    }
 }
