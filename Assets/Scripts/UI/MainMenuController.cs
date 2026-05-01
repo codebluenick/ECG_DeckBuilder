@@ -10,7 +10,8 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
-        continueBtn.SetActive(UUIDManager.Exists());//toggle visibility based on UUID
+         if (continueBtn != null)
+         continueBtn.SetActive(UUIDManager.Exists());
     }
     //Func to overwrite existing id and start a fresh session
     public void OnNewUser()
@@ -26,5 +27,10 @@ public class MainMenuController : MonoBehaviour
     {
         // Transitions to the DeckViewer to see previously created cards/decks
         SceneManager.LoadScene("DeckViewer");
+    }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
