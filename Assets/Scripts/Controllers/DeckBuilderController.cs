@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DeckBuilderController : MonoBehaviour
 {
@@ -17,17 +18,33 @@ public class DeckBuilderController : MonoBehaviour
     private DeckSystem deckSystem = new DeckSystem();
     private HandSystem handSystem = new HandSystem();
 
+    public APIManager apiManager;
+
     private bool isAnimating = false;
+
+    public List<CardView> hand = new List<CardView>();
+
+    public GameObject saveButton;
+    public GameObject discardButton;
 
     void Start()
     {
         deckSystem.Init(allCards);
         SpawnDeck();
+
+        //Hide buttons initially
+        saveButton.SetActive(false);
+        discardButton.SetActive(false);
     }
 
     void SpawnDeck()
     {
-        foreach (var card in allCards)
+        foreach (Transform child in deckPos)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (var card in deckSystem.GetShuffledList())
         {
             var obj = Instantiate(cardPrefab, deckPos);
             var view = obj.GetComponent<CardView>();
@@ -40,7 +57,6 @@ public class DeckBuilderController : MonoBehaviour
             obj.GetComponent<Button>().onClick.AddListener(OnDeckClicked);
         }
     }
-
     public void OnDeckClicked()
     {
         if (isAnimating || handSystem.IsFull()) return;
@@ -107,6 +123,76 @@ public class DeckBuilderController : MonoBehaviour
         if (cg == null) cg = cardObj.AddComponent<CanvasGroup>();
         cg.blocksRaycasts = false;
 
+        
+
+        // Auto-save deck
+        // AUTO SAVE when deck is complete
+        // if (handSystem.GetIDs().Count == 8)
+        // {
+        //     StartCoroutine(apiManager.SaveDeck(
+        //         UUIDManager.Get(),
+        //         handSystem.GetIDs()
+        //     ));
+        // }
+
         isAnimating = false;
+
+        AddToHand(card);
     }
+
+    void AddToHand(CardView card)
+    {
+        hand.Add(card);
+        CheckIfComplete();
+    }
+
+    void CheckIfComplete()
+    {
+        if (handSystem.GetIDs().Count == 8)
+        {
+            saveButton.SetActive(true);
+            discardButton.SetActive(true);
+        }
+    }
+
+    public void OnSaveClicked()
+    {
+        string userId = PlayerPrefs.GetString("USER_UUID");
+
+        List<string> ids = new List<string>();
+
+        foreach (var card in hand)
+        {
+            ids.Add(card.GetID());
+        }
+
+        StartCoroutine(apiManager.SaveDeck(userId, ids));
+    }
+
+    public void OnDiscardClicked()
+    {
+        // 1. Clear hand UI
+        foreach (var card in hand)
+        {
+            Destroy(card.gameObject);
+        }
+
+        hand.Clear();
+        handSystem.Clear(); // IMPORTANT
+
+        // 2. Reset UI
+        saveButton.SetActive(false);
+        discardButton.SetActive(false);
+
+        isAnimating = false;
+
+        // 3. RESET + RESHUFFLE DECK
+        deckSystem.Init(allCards);
+
+        // 4. REBUILD DECK VISUALS
+        SpawnDeck();
+
+        Debug.Log("Deck reset + reshuffled");
+    }
+
 }
