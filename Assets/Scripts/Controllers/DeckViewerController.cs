@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 
 public class DeckViewerController : MonoBehaviour
 {
@@ -11,13 +13,33 @@ public class DeckViewerController : MonoBehaviour
 
     public List<CardData> allCards;
 
+    //For loading panel
+    public GameObject loadingPanel;
+    public GameObject SpinnerImg;
+    public GameObject scrollView;
+    public GameObject backBtn;
+
     void Start()
     {
+        loadingPanel.SetActive(true);
+        scrollView.SetActive(false);
+        backBtn.SetActive(false);
+
         StartCoroutine(apiManager.LoadDecks(OnLoaded));
+    }
+    void Update()//small animation for loading screen
+    {
+        SpinnerImg.transform.DORotate(new Vector3(0, 0, -360), 2f, RotateMode.FastBeyond360)
+        .SetLoops(-1)
+        .SetEase(Ease.Linear);
     }
 
     void OnLoaded(APIManager.SaveData data)
     {
+        loadingPanel.SetActive(false);
+        scrollView.SetActive(true);
+        backBtn.SetActive(true);
+
         if (data == null) return;
 
         Debug.Log("Deck count: " + data.decks.Count);
