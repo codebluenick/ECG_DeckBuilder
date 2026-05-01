@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 ///<summary>
 /// Manages the visual display of the card in UI
@@ -11,12 +12,12 @@ public class CardView : MonoBehaviour
     public Image artwork;
 
     [Tooltip("The text for the card's display name.")]
-    public Text nameText;
+    public TMP_Text nameText;
     [Tooltip("The text for combat stats (e.g., '3/2').")]
-    public Text statsText;
+    public TMP_Text statsText;
 
     [Tooltip("The text for the ability or description.")]
-    public Text descText;
+    public TMP_Text descText;
 
     [Header("Visual States")]
     [Tooltip("The GameObject representing the back of the card (used for hidden cards or deck view).")]
