@@ -39,7 +39,7 @@ public void Setup(CardData cardData)
         descText.text = data.description;
     }
 //Toggle the visibility of the card back
-public void ShowBack(bool value)
+    public void ShowBack(bool value)
     {
         back.SetActive(value);
     }
