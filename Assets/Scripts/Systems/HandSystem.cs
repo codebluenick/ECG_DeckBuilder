@@ -44,4 +44,10 @@ public class HandSystem
             hand.Remove(card);
         }
     }
+
+    public void Clear()
+    {
+        hand.Clear();
+        Debug.Log("HandSystem cleared");
+    }
 }
