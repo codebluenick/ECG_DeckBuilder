@@ -43,4 +43,15 @@ public void ShowBack(bool value)
     {
         back.SetActive(value);
     }
+
+    // Get the CardData
+    public string GetID()
+    {
+        return data.id;
+    }
+
+    public CardData GetData()
+    {
+        return data;
+    }
 }
