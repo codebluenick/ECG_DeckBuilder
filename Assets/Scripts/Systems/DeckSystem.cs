@@ -34,4 +34,6 @@ public class DeckSystem
         Debug.LogWarning("Attempted to draw from an empty deck!");
         return null;
     }
+
+    public int RemainingCards => deck.Count;//return the current number of cards remaining in the deck
 }
