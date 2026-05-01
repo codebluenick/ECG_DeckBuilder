@@ -35,5 +35,10 @@ public class DeckSystem
         return null;
     }
 
+    public List<CardData> GetShuffledList()
+    {
+        return deck.ToList();
+    }
+
     public int RemainingCards => deck.Count;//return the current number of cards remaining in the deck
 }
