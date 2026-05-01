@@ -22,4 +22,16 @@ public class DeckSystem
 
         Debug.Log($"Deck initialized with {deck.Count} cards.");
     }
+
+    //Remove and return the top card from the deck
+    public CardData Draw()
+    {
+        if(deck.Count > 0)
+        {
+            return deck.Pop();
+        }
+
+        Debug.LogWarning("Attempted to draw from an empty deck!");
+        return null;
+    }
 }
