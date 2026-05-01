@@ -10,4 +10,16 @@ public class DeckSystem
 {
     private Stack<CardData> deck = new Stack<CardData>();//stack would be ideal for decks (last-in/first-out)
 
+    //Func to initialize the deck by shuffling a list of card data and pushing them to the stack
+    public void Init(List<CardData> cards)
+    {
+        deck.Clear();
+        //Shuffle the cards using LINQ and Random.value then add them to the stack
+        foreach(var c in cards.OrderBy(x => Random.value))
+        {
+            deck.Push(c);
+        }
+
+        Debug.Log($"Deck initialized with {deck.Count} cards.");
+    }
 }
