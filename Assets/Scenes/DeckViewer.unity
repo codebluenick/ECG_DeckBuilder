@@ -353,7 +353,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: -17}
+  m_SizeDelta: {x: 0, y: -17}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &313454849
 MonoBehaviour:
@@ -770,8 +770,8 @@ MonoBehaviour:
   m_Viewport: {fileID: 313454848}
   m_HorizontalScrollbar: {fileID: 2021784854}
   m_VerticalScrollbar: {fileID: 2010865291}
-  m_HorizontalScrollbarVisibility: 2
-  m_VerticalScrollbarVisibility: 2
+  m_HorizontalScrollbarVisibility: 1
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: -3
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5372549, g: 0.5372549, b: 0.53333336, a: 0}
+  m_Color: {r: 0.83137256, g: 0.8352941, b: 0.85882354, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -843,7 +843,7 @@ RectTransform:
   m_GameObject: {fileID: 459786302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1047699091}
@@ -1704,7 +1704,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -130}
-  m_SizeDelta: {x: -509, y: 300}
+  m_SizeDelta: {x: -526, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1496987458
 MonoBehaviour:
