@@ -1,0 +1,125 @@
+# ECG Deck Builder Unity Test
+
+A Unity-based deck building prototype focused on UI systems, animation sequencing, and REST API integration.
+
+Built with:
+- Unity 6000.3.6f1
+- DOTween
+- JSONBin.io
+- C#
+
+---
+
+# Features
+
+## Main Menu
+- New User flow
+- UUID generation and persistence using PlayerPrefs
+- Continue button enabled only when a UUID exists
+
+---
+
+## Deck Builder Scene
+- 15 unique cards created using ScriptableObjects
+- Randomized deck shuffle system
+- Interactive card draw flow
+- DOTween card animations:
+  - Lift
+  - Flip
+  - Focus zoom
+  - Move to hand
+- Hand limit of 8 cards
+- Save Deck / Discard Deck flow
+- Discard reshuffles and rebuilds the deck
+
+---
+
+## Deck Viewer Scene
+- Fetches saved decks from JSONBin.io
+- Displays multiple saved decks in a scrollable UI
+- Click cards to focus/enlarge for readability
+- Loading state while fetching API data
+
+---
+
+# Architecture
+
+The project follows a separation-of-concerns approach:
+
+| System | Responsibility |
+|---|---|
+| DeckSystem | Deck creation, shuffle, draw logic |
+| HandSystem | Hand management and capacity |
+| APIManager | Cloud save/load communication |
+| CardView | Card UI rendering |
+| DeckBuilderController | Gameplay flow + animation orchestration |
+| DeckViewerController | Deck history visualization |
+
+---
+
+# API Structure
+
+Example JSON structure stored in JSONBin:
+
+```json
+{
+  "user_id": "uuid",
+  "decks": [
+    ["1","4","7","9","10","2","11","15"],
+    ["3","6","8","12","14","5","1","13"]
+  ]
+}
+```
+
+---
+
+# Controls
+
+| Action | Input |
+|---|---|
+| Draw Card | Click top deck card |
+| Continue Animation | Mouse Click |
+| Save Deck | Save Button |
+| Discard Deck | Discard Button |
+| Focus Card | Click card in Deck Viewer |
+
+---
+
+# Project Structure
+
+```plaintext
+Assets/
+├── Scripts/
+│   ├── Controllers/
+│   ├── Systems/
+│   ├── API/
+│   ├── UI/
+│   └── Data/
+├── Prefabs/
+├── Scenes/
+└── ScriptableObjects/
+```
+
+---
+
+# Notes
+
+- This project focuses on the deck-building metagame loop only.
+- Combat/gameplay systems were intentionally not implemented per assignment scope.
+- DOTween is used instead of Animator for procedural UI animation sequencing.
+
+---
+
+# Setup
+
+1. Open project in Unity 6000.3.6f1
+2. Import DOTween
+3. Add JSONBin URL + API key in `APIManager`
+4. Open MainMenu scene
+5. Play
+
+---
+
+# Author
+
+Nikhil
